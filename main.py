@@ -12,6 +12,7 @@
 # Present the weather forecast to user
 # Decide if weather conditions are suitable for a picnic
 # Write the final results to a file - need to hand this in
+# use tomtom api - as user 'do you want a picnic suggestion?' loop through a fetch and then slice for these criteria
 
 # 1. getting the data
 import requests
@@ -50,9 +51,9 @@ def get_weather_forecast(location):
 
 def determine_picnic_weather(temperature, wind_speed, weather_description):
     # need to say if it's picnic weather based on the conditions
-    if 20 <= temperature <= 36 and wind_speed < 5 and 'clear' in weather_description.lower():
+    if 20 <= temperature <= 36 and wind_speed < 5 and 'clear' or 'few clouds' or 'scattered clouds' in weather_description.lower():
         return "It is picnic weather! Grab your blanket and let's eat!"
-    elif 15 <= temperature <= 25:
+    elif 15 <= temperature <= 25 and 'cloudy' in weather_description.lower():
         return "It may be picnic weather, take a brolly just in case!"
     else:
         return "Eat that picnic in your living room today - stay inside!"
