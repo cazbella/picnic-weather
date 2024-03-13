@@ -57,11 +57,14 @@ def get_weather_forecast(location):
     # parse help source: https://brightdata.com/blog/how-tos/parse-json-data-with-python
 
 def get_POI(location, country):
-    # Construct URL
-    # test in browser to view what is returned
+    # Constructs URL
+    # I tested in browser to view what is returned
     # This took a lot of trial and error and api testing.
     # Ideally I wanted an api that returned parks or green spaces but I could only find an american one.
-    # I have used tomtom before and managed to get the city and coutry to work eventually!
+    # Spent quite a lot of time searching so settled on points of interest.
+    # Tried a lot of keywords when parsing, any alterations seemed to return only businesses!
+    # After testing, options for a clean response are: 1. Blackpool, UK 2. Cardiff, Wales 3. Bude, UK
+    # I have used tomtom before and managed to get the city and country to work eventually!
     url = f"https://api.tomtom.com/search/2/poiSearch/{location},{country}.json?key={api_key_tom_tom}"
 
     # Fetch/json format
@@ -106,7 +109,7 @@ def present_forecast(forecast_data):
 def main():
     # Prompt for location (need to look at accuracy/specificity of location her - use reverse geocode?
     # 'input' is an inbuilt function
-    location = input("Enter your city name: ")
+    location = input("Enter your town name: ")
     country = input("Enter your country name: ")
 
 
@@ -118,7 +121,7 @@ def main():
     present_forecast(forecast_data)
 
     # Prompt for poi - is this the best way to do this?
-    input("Would you like a picnic spot suggestion for now or the future? yes/no").lower()
+    input("Would you like a picnic spot suggestion (point of interest) for now or the future? yes/no").lower()
 
     poi_data = get_POI(location, country)
 
@@ -155,7 +158,11 @@ def main():
     else:
         print("No data available for the given location.")
 
-    # Write results to a file syntax - need to write to file
+# Write results to a file syntax - need to write to file
+
+# with open('assignment2_caroline_lane.txt', 'r') as file:
+#     contents = file.read()
+# print(contents)
 
 
 print("API Key:", api_key_open_weather)
