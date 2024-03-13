@@ -19,7 +19,8 @@ import requests
 import json
 import api_keys
 
-api_key = api_keys.OPEN_WEATHER_API_KEY
+api_key_open_weather = api_keys.OPEN_WEATHER_API_KEY
+api_key_tom_tom = api_keys.TOM_TOM_API_KEY
 
 
 # help source:  https://www.geeksforgeeks.org/python-find-current-weather-of-any-city-using-openweathermap-api/
@@ -28,7 +29,7 @@ def get_weather_forecast(location):
     # Construct URL
     # test in browser to view what is returned
     # need to add "&units=metric" to get in degrees c
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}&units=metric"
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key_open_weather}&units=metric"
 
     # Fetch/json format
     response = requests.get(url)
@@ -48,12 +49,25 @@ def get_weather_forecast(location):
     #  "id": 2653883, "name": "Cannock", "cod": 200}
     # parse help source: https://brightdata.com/blog/how-tos/parse-json-data-with-python
 
+def get_POI(location, country):
+    # Construct URL
+    # test in browser to view what is returned
+    # need to add "&units=metric" to get in degrees c
+    url = f"https://api.tomtom.com/search/2/poiSearch/{location},{country}.json?key={api_key_tom_tom}"
 
+    # Fetch/json format
+    response = requests.get(url)
+    if response.status_code == 200:
+        # Return parsed JSON data
+        return json.loads(response.text)
+    else:
+        print("Failed to fetch points of interest! - Please check the name of your city.")
+        return None
 def determine_picnic_weather(temperature, wind_speed, weather_description):
     # need to say if it's picnic weather based on the conditions
-    if 20 <= temperature <= 36 and wind_speed < 5 and 'clear' or 'few clouds' or 'scattered clouds' in weather_description.lower():
+    if 20 <= temperature <= 36 and wind_speed < 5 and 'clear' in weather_description.lower():
         return "It is picnic weather! Grab your blanket and let's eat!"
-    elif 15 <= temperature <= 25 and 'cloudy' in weather_description.lower():
+    elif 15 <= temperature <= 25 and wind_speed < 5 and 'clouds' in weather_description.lower():
         return "It may be picnic weather, take a brolly just in case!"
     else:
         return "Eat that picnic in your living room today - stay inside!"
@@ -79,6 +93,8 @@ def main():
     # Prompt for location (need to look at accuracy/specificity of location her - use reverse geocode?
     # 'input' is an inbuilt function
     location = input("Enter your city name: ")
+    country = input("Enter your country name (optional): ")
+
 
     # Call weather forecast function with location as an argument. Forecast is fetched after user input.
     forecast_data = get_weather_forecast(location)
@@ -86,10 +102,17 @@ def main():
     # Present forecast function recall with argument. Prints results to console.
     present_forecast(forecast_data)
 
+    poi_data = get_POI(location, country)
+
+    # Prints POI data
+    if poi_data:
+        print("Points of Interest data:")
+        print(poi_data)
+
     # Write results to a file syntax - need to write to file
 
 
-print("API Key:", api_key)
+print("API Key:", api_key_open_weather)
 
 if __name__ == "__main__":
     main()
