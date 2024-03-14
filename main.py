@@ -78,7 +78,7 @@ def get_POI(location, country):
 
 def determine_picnic_weather(temperature, wind_speed, weather_description):
     # Need to say if it's picnic weather based on the conditions
-    if 20 <= temperature <= 36 and wind_speed < 5 and 'clear' or 'broken' or 'scattered' or 'light' in weather_description.lower():
+    if 20 <= temperature <= 36 and wind_speed < 5 in weather_description.lower():
         return "It is picnic weather! Grab your blanket and let's eat!"
     elif 15 <= temperature <= 25 and wind_speed < 5 and 'clouds' in weather_description.lower():
         return "It may be picnic weather, take a brolly just in case!"
