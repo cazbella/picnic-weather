@@ -17,7 +17,7 @@ Is it picnic weather? Let's find out ☀️
 
 ## Description
 
-Picnic Weather is a Python application that utilizes the OpenWeatherMap API to fetch weather data based on user input. Users can enter their location (city name or postal code) to retrieve current weather conditions, including temperature, wind speed, and weather description. The app then determines if the weather is suitable for a picnic based on predefined criteria. Additionally, users have the option to request picnic spot suggestions using the TomTom API. This project serves as a demonstration of integrating multiple APIs to provide a practical solution for weather forecasting and outdoor activity planning.
+Picnic Weather is a Python application that utilises the OpenWeatherMap API to fetch weather data based on user input. Users can enter their location (city name or postal code) to retrieve current weather conditions, including temperature, wind speed, and weather description. The app then determines if the weather is suitable for a picnic based on predefined criteria. Additionally, users have the option to request picnic spot suggestions using the TomTom API. This project serves as a demonstration of integrating multiple APIs to provide a practical solution for weather forecasting and outdoor activity planning.
 
 ## Installation
 
