@@ -19,6 +19,8 @@
 	import json
 	# This is my additional module
 	import api_keys
+	# Make api data pretty
+	from pprint import pprint
 	
 	# I worked out how to get these into a gitignore file after lots of mistakes!
 	# I can send you the api keys if requited or they are available free from
@@ -31,9 +33,9 @@
 	# help source:  https://www.geeksforgeeks.org/python-find-current-weather-of-any-city-using-openweathermap-api/
 	
 	def get_weather_forecast(location):
-	    # Construct URL
-	    # test in browser to view what is returned
-	    # need to add "&units=metric" to get in degrees c
+	    # Construct URL, did this on my last course too.
+	    # Test in browser to view what is returned
+	    # Need to add "&units=metric" to get in degrees c
 	    url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key_open_weather}&units=metric"
 	
 	    # Fetch/json format
@@ -60,7 +62,7 @@
 	    # Constructs URL
 	    # I tested in browser to view what is returned
 	    # This took a lot of trial and error and api testing.
-	    # Ideally I wanted an api that returned parks or green spaces but I could only find an american one.
+	    # Ideally I wanted an api that returned parks or green spaces, but I could only find an American one.
 	    # Spent quite a lot of time searching so settled on points of interest.
 	    # Tried a lot of keywords when parsing, any alterations seemed to return only businesses!
 	    # After testing, options for a clean response are: 1. Blackpool, UK 2. Cardiff, Wales 3. Bude, UK
@@ -158,9 +160,12 @@
 	    else:
 	        print("No data available for the given location.")
 	
+	# I played with this a lot to try and include things like 'castles' and 'beaches' but this only seemed
+	# to increase the return of the number of businesses.
+	
 	# Write results to a file syntax - need to write to file
 	
-	# Variable for file
+	# Variable for input file
 	input_file_name = "main.py"
 	
 	# Output file exports to here

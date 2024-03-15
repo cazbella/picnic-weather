@@ -19,6 +19,8 @@ import requests
 import json
 # This is my additional module
 import api_keys
+# Make api data pretty (for future reference)
+from pprint import pprint
 
 # I worked out how to get these into a gitignore file after lots of mistakes!
 # I can send you the api keys if requited or they are available free from
@@ -31,9 +33,9 @@ api_key_tom_tom = api_keys.TOM_TOM_API_KEY
 # help source:  https://www.geeksforgeeks.org/python-find-current-weather-of-any-city-using-openweathermap-api/
 
 def get_weather_forecast(location):
-    # Construct URL
-    # test in browser to view what is returned
-    # need to add "&units=metric" to get in degrees c
+    # Construct URL, did this on my last course too.
+    # Test in browser to view what is returned
+    # Need to add "&units=metric" to get in degrees c
     url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key_open_weather}&units=metric"
 
     # Fetch/json format
@@ -60,7 +62,7 @@ def get_POI(location, country):
     # Constructs URL
     # I tested in browser to view what is returned
     # This took a lot of trial and error and api testing.
-    # Ideally I wanted an api that returned parks or green spaces but I could only find an american one.
+    # Ideally I wanted an api that returned parks or green spaces, but I could only find an American one.
     # Spent quite a lot of time searching so settled on points of interest.
     # Tried a lot of keywords when parsing, any alterations seemed to return only businesses!
     # After testing, options for a clean response are: 1. Blackpool, UK 2. Cardiff, Wales 3. Bude, UK
@@ -158,21 +160,24 @@ def main():
     else:
         print("No data available for the given location.")
 
+# I played with this a lot to try and include things like 'castles' and 'beaches' but this only seemed
+# to increase the return of the number of businesses.
+
 # Write results to a file syntax - need to write to file
 
-# Variable for file
+# Variable for input file
 input_file_name = "main.py"
 
 # Output file exports to here
 output_file_name = "exported_code.py"
 
-# Open the input file for reading using context manager
+# Open the input file for reading using context manager (from lesson)
 with open(input_file_name, 'r') as input_file:
     # Reads the input file
     code = input_file.read()
 
 # Add indentation to the code from web stack overflow
-# old files and new files - GIT replaces the names with _old and _new!! Very strange to me!
+# old files and new files - replaces the names with _old and _new!!
 indented_code = "\t" + code.replace("\n", "\n\t")
 
 # Lesson code to write whole file to the output file
