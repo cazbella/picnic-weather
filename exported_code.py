@@ -19,7 +19,7 @@
 	import json
 	# This is my additional module
 	import api_keys
-	# Make api data pretty
+	# Make api data pretty (for future reference)
 	from pprint import pprint
 	
 	# I worked out how to get these into a gitignore file after lots of mistakes!
@@ -171,13 +171,13 @@
 	# Output file exports to here
 	output_file_name = "exported_code.py"
 	
-	# Open the input file for reading using context manager
+	# Open the input file for reading using context manager (from lesson)
 	with open(input_file_name, 'r') as input_file:
 	    # Reads the input file
 	    code = input_file.read()
 	
 	# Add indentation to the code from web stack overflow
-	# old files and new files - GIT replaces the names with _old and _new!! Very strange to me!
+	# old files and new files - replaces the names with _old and _new!!
 	indented_code = "\t" + code.replace("\n", "\n\t")
 	
 	# Lesson code to write whole file to the output file
